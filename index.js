@@ -29,6 +29,14 @@ async function run() {
             res.send(packages);
         });
 
+        //GET API for single package
+        app.get('/packages/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const foundPackage = await packageCollection.findOne(query);
+            res.send(foundPackage);
+        });
+
         //POST API 
         app.post('/packages', async (req, res) => {
             const newPackage = req.body;
