@@ -32,10 +32,9 @@ async function run() {
         //POST API 
         app.post('/packages', async (req, res) => {
             const newPackage = req.body;
-            console.log(newPackage);
+            // console.log(newPackage);
             const result = await packageCollection.insertOne(newPackage);
-            console.log(result);
-            res.send('found');
+            res.json(result);
         });
     }
     finally {
