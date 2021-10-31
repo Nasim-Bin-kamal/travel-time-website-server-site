@@ -73,18 +73,19 @@ async function run() {
         //UPDATE API
         app.put('/bookings/update/:id', async (req, res) => {
             const id = req.params.id;
-            console.log(id)
-            const bookedPackage = req.body;
-            console.log(res.body.bookingStatus);
+            // console.log(id)
+            const updatedStatus = req.body.bookingStatus;
+
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updateDoc = {
                 $set: {
-                    bookingStatus: bookedPackage.bookingStatus
+                    bookingStatus: updatedStatus
                 },
             };
             const result = await bookingCollection.updateOne(filter, updateDoc, options);
             res.json(result);
+            // res.send('updating')
 
 
         });
